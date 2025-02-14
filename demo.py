@@ -2,8 +2,9 @@ import sys
 import csv
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QFileDialog, QTabWidget, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget,
-    QPushButton, QHBoxLayout, QLabel, QMessageBox
+    QPushButton, QHBoxLayout, QLabel, QDialog, QFormLayout, QLineEdit, QDialogButtonBox
 )
+from PyQt5 import QtWidgets
 
 class InformationSystem(QMainWindow):
     def __init__(self):
@@ -53,19 +54,30 @@ class InformationSystem(QMainWindow):
 
     # Add button functions
     def add_entry_window(self):
-        add = QMessageBox()
-        add.setWindowTitle("Add a student entry")
-        add.setText("Add a student")
-        add.resize(800,600)
-        add.setStandardButtons(QMessageBox.Cancel)
+        dialog = QDialog(self)
+        dialog.setWindowTitle('Add Student Entry')
+        dialog.resize(800,600)
+        
+        layout = QFormLayout()
+        idEdit = QLineEdit()
+        firstNameEdit = QLineEdit()
+        lastNameEdit = QLineEdit()
+        yearEdit = QLineEdit()
+        genderEdit = QLineEdit()
 
-        add.buttonClicked.connect(self.pop_cancel)
+        layout.addRow('ID Number:', idEdit)
+        layout.addRow('First Name:', firstNameEdit)
+        layout.addRow('Last Name:', lastNameEdit)
+        layout.addRow('Year Level:', yearEdit)
+        layout.addRow('Gender:', genderEdit)
 
-        x = add.exec_()
+        buttonBox = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel)
+        #buttonBox.accepted.connect(lambda: self.addEntry(nameEdit.text(), ageEdit.text(), gradeEdit.text(), dialog))
+        #buttonBox.rejected.connect(dialog.reject)
 
-    def pop_cancel(self, i):
-        print(i.text())
-
+        layout.addRow(buttonBox)
+        dialog.setLayout(layout)
+        dialog.exec_()
 
     def open_csv_file(self):
         options = QFileDialog.Options()
