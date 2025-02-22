@@ -1,3 +1,3 @@
 # Student Information System
 
-Practice test using Qt Designer.
+GUI made using Qt Designer and PyQt5, backend is Python.
