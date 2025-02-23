@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>ProgramDialog</class>
+ <widget class="QDialog" name="ProgramDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Update Program</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -38,12 +38,18 @@
     <rect>
      <x>10</x>
      <y>80</y>
-     <width>191</width>
+     <width>211</width>
      <height>41</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
    <property name="text">
-    <string>PROGRAM CODE:</string>
+    <string>Program Code:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -51,12 +57,18 @@
     <rect>
      <x>10</x>
      <y>140</y>
-     <width>191</width>
+     <width>211</width>
      <height>41</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
    <property name="text">
-    <string>PROGRAM NAME:</string>
+    <string>Program Name:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
@@ -64,12 +76,18 @@
     <rect>
      <x>10</x>
      <y>200</y>
-     <width>191</width>
+     <width>201</width>
      <height>41</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
    <property name="text">
-    <string>COLLEGE CODE:</string>
+    <string>College Code:</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="programCodeEdit">
