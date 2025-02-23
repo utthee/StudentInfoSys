@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'update.ui'
+# Form implementation generated from reading ui file 'updateStudent.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -11,11 +11,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        Dialog.setObjectName("Dialog")
-        Dialog.resize(392, 540)
-        self.groupBox = QtWidgets.QGroupBox(Dialog)
+class Ui_StudentDialog(object):
+    def setupUi(self, StudentDialog):
+        StudentDialog.setObjectName("StudentDialog")
+        StudentDialog.resize(392, 540)
+        self.groupBox = QtWidgets.QGroupBox(StudentDialog)
         self.groupBox.setGeometry(QtCore.QRect(10, 110, 371, 421))
         self.groupBox.setTitle("")
         self.groupBox.setObjectName("groupBox")
@@ -39,7 +39,6 @@ class Ui_Dialog(object):
         self.updateGenderComboBox.setGeometry(QtCore.QRect(180, 240, 181, 41))
         self.updateGenderComboBox.setObjectName("updateGenderComboBox")
         self.updateGenderComboBox.addItem("")
-        self.updateGenderComboBox.addItem("")
         self.updateProgramCodeComboBox = QtWidgets.QComboBox(self.groupBox)
         self.updateProgramCodeComboBox.setGeometry(QtCore.QRect(180, 290, 181, 41))
         self.updateProgramCodeComboBox.setObjectName("updateProgramCodeComboBox")
@@ -62,13 +61,13 @@ class Ui_Dialog(object):
         self.label_7.setGeometry(QtCore.QRect(10, 290, 161, 41))
         self.label_7.setObjectName("label_7")
         self.pushButton = QtWidgets.QPushButton(self.groupBox)
-        self.pushButton.setGeometry(QtCore.QRect(230, 370, 130, 40))
+        self.pushButton.setGeometry(QtCore.QRect(190, 360, 130, 40))
         self.pushButton.setObjectName("pushButton")
         self.pushButton_2 = QtWidgets.QPushButton(self.groupBox)
-        self.pushButton_2.setGeometry(QtCore.QRect(90, 370, 130, 40))
+        self.pushButton_2.setGeometry(QtCore.QRect(40, 360, 130, 40))
         self.pushButton_2.setObjectName("pushButton_2")
-        self.label = QtWidgets.QLabel(Dialog)
-        self.label.setGeometry(QtCore.QRect(10, 20, 371, 91))
+        self.label = QtWidgets.QLabel(StudentDialog)
+        self.label.setGeometry(QtCore.QRect(10, 10, 371, 91))
         font = QtGui.QFont()
         font.setPointSize(20)
         font.setBold(True)
@@ -76,34 +75,33 @@ class Ui_Dialog(object):
         self.label.setFont(font)
         self.label.setObjectName("label")
 
-        self.retranslateUi(Dialog)
-        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        self.retranslateUi(StudentDialog)
+        QtCore.QMetaObject.connectSlotsByName(StudentDialog)
 
-    def retranslateUi(self, Dialog):
+    def retranslateUi(self, StudentDialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
-        self.updateYearLevelComboBox.setItemText(0, _translate("Dialog", "1"))
-        self.updateYearLevelComboBox.setItemText(1, _translate("Dialog", "2"))
-        self.updateYearLevelComboBox.setItemText(2, _translate("Dialog", "3"))
-        self.updateYearLevelComboBox.setItemText(3, _translate("Dialog", "4"))
-        self.updateGenderComboBox.setItemText(0, _translate("Dialog", "M"))
-        self.updateGenderComboBox.setItemText(1, _translate("Dialog", "F"))
-        self.label_2.setText(_translate("Dialog", "ID Number"))
-        self.label_3.setText(_translate("Dialog", "First Name"))
-        self.label_4.setText(_translate("Dialog", "Last Name:"))
-        self.label_5.setText(_translate("Dialog", "Year Level:"))
-        self.label_6.setText(_translate("Dialog", "Gender:"))
-        self.label_7.setText(_translate("Dialog", "Program Code:"))
-        self.pushButton.setText(_translate("Dialog", "Edit"))
-        self.pushButton_2.setText(_translate("Dialog", "Cancel"))
-        self.label.setText(_translate("Dialog", "UPDATE STUDENT"))
+        StudentDialog.setWindowTitle(_translate("StudentDialog", "Update Student"))
+        self.updateYearLevelComboBox.setItemText(0, _translate("StudentDialog", "1"))
+        self.updateYearLevelComboBox.setItemText(1, _translate("StudentDialog", "2"))
+        self.updateYearLevelComboBox.setItemText(2, _translate("StudentDialog", "3"))
+        self.updateYearLevelComboBox.setItemText(3, _translate("StudentDialog", "4"))
+        self.updateGenderComboBox.setItemText(0, _translate("StudentDialog", "M"))
+        self.label_2.setText(_translate("StudentDialog", "ID Number:"))
+        self.label_3.setText(_translate("StudentDialog", "First Name:"))
+        self.label_4.setText(_translate("StudentDialog", "Last Name:"))
+        self.label_5.setText(_translate("StudentDialog", "Year Level:"))
+        self.label_6.setText(_translate("StudentDialog", "Gender:"))
+        self.label_7.setText(_translate("StudentDialog", "Program Code:"))
+        self.pushButton.setText(_translate("StudentDialog", "Confirm"))
+        self.pushButton_2.setText(_translate("StudentDialog", "Cancel"))
+        self.label.setText(_translate("StudentDialog", "UPDATE STUDENT"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
+    StudentDialog = QtWidgets.QDialog()
+    ui = Ui_StudentDialog()
+    ui.setupUi(StudentDialog)
+    StudentDialog.show()
     sys.exit(app.exec_())
