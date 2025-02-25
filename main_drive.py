@@ -25,6 +25,9 @@ class MainClass(QMainWindow, Ui_MainWindow):
         self.data = [[], [], []]  # Store CSV data for each table
         self.loadCSVFiles()
         
+        self.programChoices()
+        self.collegeChoices()
+
         self.addStudentButton.clicked.connect(self.addStudentEntry)
         self.addProgramButton.clicked.connect(self.addProgramEntry)
         self.addCollegeButton.clicked.connect(self.addCollegeEntry)       
@@ -56,8 +59,8 @@ class MainClass(QMainWindow, Ui_MainWindow):
 
     def displayTable(self):
         # Populate items to the combo boxes
-        self.programChoices()
-        self.collegeChoices()
+        #self.programChoices()
+        #self.collegeChoices()
 
         # Reset hidden rows.
         for row in range(self.tableWidget.rowCount()):
@@ -451,7 +454,9 @@ class MainClass(QMainWindow, Ui_MainWindow):
                 self.updateProgramCSV(data)
                 self.updateStudentCSV(self.data[0])
                 self.displayTable()
-                self.updateProgramSuccess()
+
+                if updated_values != [updateProgramCode, updateProgramName, updateCollegeCode]:
+                    self.updateProgramSuccess()
 
     def updateCollegeEntry(self):
         self.readCollegeCSV()
@@ -477,7 +482,9 @@ class MainClass(QMainWindow, Ui_MainWindow):
                 self.updateCollegeCSV(data)
                 self.updateProgramCSV(self.data[1])
                 self.displayTable()
-                self.updateProgramSuccess()
+
+                if updated_values != [updateCollegeCode, updateCollegeName]:
+                    self.updateProgramSuccess()
 
     
     def sortLayout(self):
@@ -836,7 +843,7 @@ class ProgramDialog(QDialog, Ui_ProgramDialog):
         self.programNameEdit.setText(programName)
         self.collegeCodeBox.setCurrentText(collegeCode)
 
-        self.confirmButton.clicked.connect(self.accept)       
+        self.confirmButton.clicked.connect(self.validateProgramData)       
         self.cancelButton.clicked.connect(self.reject)
 
     def collegeChoices(self):
@@ -870,11 +877,11 @@ class ProgramDialog(QDialog, Ui_ProgramDialog):
 
         if not (newProgramCode and newProgramName and newCollegeCode):
             QMessageBox.warning(self, "Input Error", "All fields must be filled up.")
-            return
+            return None
         
         if not all(char.isalpha() or char.isspace() for char in newProgramCode and newProgramName):
             QMessageBox.warning(self, "Input Error", "Please input a valid program name.")
-            return
+            return None
 
         for row in self.programData:
             existingProgramCode = row[0].strip().upper()
@@ -886,14 +893,19 @@ class ProgramDialog(QDialog, Ui_ProgramDialog):
             # Check if the program code already exists
             if existingProgramCode == newProgramCode:
                 QMessageBox.warning(self, "Input Error", "The program code you are trying to add already exists.")
-                return
+                return None
 
             # Check if the program name already exists
             if existingProgramName == newProgramName.replace(" ", "").upper():
                 QMessageBox.warning(self, "Input Error", "The program name you are trying to enter already exists.")
-                return 
+                return None
 
         return [newProgramCode, newProgramName, newCollegeCode]
+    
+    def validateProgramData(self):
+        updated_data = self.updatedProgramData()
+        if updated_data:
+            self.accept()
     
 #----------------------------------------------------------------------- EDIT COLLEGE -----------------------------------------------------------------------------------------------
 
@@ -911,7 +923,7 @@ class CollegeDialog(QDialog, Ui_CollegeDialog):
         self.collegeCodeEdit.setText(collegeCode)
         self.collegeNameEdit.setText(collegeName)
 
-        self.confirmButton.clicked.connect(self.accept)       
+        self.confirmButton.clicked.connect(self.validateCollegeData)       
         self.cancelButton.clicked.connect(self.reject)
 
     def readCollegeCSV(self):
@@ -932,11 +944,11 @@ class CollegeDialog(QDialog, Ui_CollegeDialog):
         
         if not newCollegeCode or not newCollegeName:
             QMessageBox.warning(self, "Input Error", "All fields must be filled up.")
-            return
+            return None
         
         if not all(char.isalpha() or char.isspace() for char in newCollegeCode and newCollegeName):
             QMessageBox.warning(self, "Input Error", "Please input a valid college name.")
-            return
+            return None
 
         for row in self.collegeData:
             existingCollegeCode = row[0].strip().upper()
@@ -948,17 +960,22 @@ class CollegeDialog(QDialog, Ui_CollegeDialog):
             # Check if the college code already exists
             if existingCollegeCode == newCollegeCode:
                 QMessageBox.warning(self, "Input Error", "The program code you are trying to add already exists.")
-                return
+                return None
 
             # Check if the college name already exists
             if existingCollegeName == newCollegeName.replace(" ", "").upper():
                 QMessageBox.warning(self, "Input Error", "The program name you are trying to enter already exists.")
-                return 
+                return None
 
         return [
             newCollegeCode,
             newCollegeName
         ]
+    
+    def validateCollegeData(self):
+        updated_data = self.updatedCollegeData()
+        if updated_data:
+            self.accept()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
