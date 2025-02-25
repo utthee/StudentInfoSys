@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>CollegeDialog</class>
+ <widget class="QDialog" name="CollegeDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -24,13 +24,14 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>18</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>Lucida Console</family>
+     <pointsize>20</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
    <property name="text">
-    <string>UPDATE COLLEGE</string>
+    <string>Update College</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -44,12 +45,14 @@
    </property>
    <property name="font">
     <font>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>Lucida Console</family>
+     <pointsize>12</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
    <property name="text">
-    <string>COLLEGE CODE:</string>
+    <string>College Code:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -63,12 +66,14 @@
    </property>
    <property name="font">
     <font>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>Lucida Console</family>
+     <pointsize>12</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
     </font>
    </property>
    <property name="text">
-    <string>COLLEGE NAME:</string>
+    <string>College Name:</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="collegeCodeEdit">
@@ -80,6 +85,11 @@
      <height>41</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
   </widget>
   <widget class="QLineEdit" name="collegeNameEdit">
    <property name="geometry">
@@ -90,6 +100,12 @@
      <height>41</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Lucida Console</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
   </widget>
   <widget class="QPushButton" name="confirmButton">
    <property name="geometry">
@@ -99,6 +115,12 @@
      <width>130</width>
      <height>40</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Lucida Console</family>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Confirm</string>
@@ -112,6 +134,12 @@
      <width>130</width>
      <height>40</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Lucida Console</family>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Cancel</string>
