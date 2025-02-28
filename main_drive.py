@@ -8,7 +8,7 @@ from updateProgram import Ui_ProgramDialog
 from updateCollege  import Ui_CollegeDialog
 
 from PyQt5.QtWidgets import *
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore, QtGui
 
 STUDENT_CSV = "STUDENT.csv"
 PROGRAM_CSV = "PROGRAM.csv"
@@ -24,9 +24,6 @@ class MainClass(QMainWindow, Ui_MainWindow):
         self.current_table_index = self.displayComboBox.currentIndex()  # Track the current table being displayed
         self.data = [[], [], []]  # Store CSV data for each table
         self.loadCSVFiles()
-        
-        self.programChoices()
-        self.collegeChoices()
 
         self.addStudentButton.clicked.connect(self.addStudentEntry)
         self.addProgramButton.clicked.connect(self.addProgramEntry)
@@ -59,10 +56,10 @@ class MainClass(QMainWindow, Ui_MainWindow):
 
     def displayTable(self):
         # Populate items to the combo boxes
-        #self.programChoices()
-        #self.collegeChoices()
+        self.programChoices()
+        self.collegeChoices()
 
-        # Reset hidden rows.
+        # Reset hidden rows
         for row in range(self.tableWidget.rowCount()):
             self.tableWidget.setRowHidden(row, False)
 
@@ -70,138 +67,47 @@ class MainClass(QMainWindow, Ui_MainWindow):
         self.tableWidget.clearSelection()
         self.tableWidget.setCurrentItem(None)
 
-        if self.displayComboBox.currentIndex() == 0:
-            self.displayStudentTable()
+        if self.displayComboBox.currentIndex() == 0:      
+            self.readStudentCSV()
+            self.showTable()
             return
 
-        elif self.displayComboBox.currentIndex() == 1:
-            self.displayProgramTable()
+        elif self.displayComboBox.currentIndex() == 1:  
+            self.readProgramCSV()
+            self.showTable()
             return
 
         elif self.displayComboBox.currentIndex() == 2:
-            self.displayCollegeTable()
+            self.readCollegeCSV()
+            self.showTable()
             return
     
-    def displayStudentTable(self):
-        self.current_table_index = self.displayComboBox.currentIndex()
-
+    def clearHeaderBox(self):
+        # Resets header items whenever a different table is shown
         self.sortComboBox.clear()
-        self.sortComboBox.addItems(self.headers[0])
+        self.sortComboBox.addItems(self.headers[self.current_table_index])
         
         self.searchBox.clear()
         self.searchComboBox.clear()
         self.searchComboBox.addItem("")
-        self.searchComboBox.addItems(self.headers[0])
-        
-        with open(STUDENT_CSV, newline='', encoding='utf-8') as csvfile:
-            reader = csv.reader(csvfile)
-            self.headers[0] = next(reader)
-            data = [row for row in reader]
-            self.data[0] = data
+        self.searchComboBox.addItems(self.headers[self.current_table_index])
 
-        self.tableWidget.setColumnCount(len(self.headers[0]))
-        self.tableWidget.setHorizontalHeaderLabels(self.headers[0])
-        self.tableWidget.setRowCount(len(self.data[0]))
-
-        # Store max width for each column
-        column_widths = [0] * len(self.headers[0])
-
-        # Populate table and calculate column width
-        for row_idx, row in enumerate(self.data[0]):
-            for col_idx, value in enumerate(row):
-                item = QTableWidgetItem(str(value))
-                self.tableWidget.setItem(row_idx, col_idx, item)
-
-                # Track the longest string length in pixels
-                text_width = self.tableWidget.fontMetrics().boundingRect(str(value)).width()
-                column_widths[col_idx] = max(column_widths[col_idx], text_width)
-
-        # Adjust column widths based on the longest text
-        for col_idx, width in enumerate(column_widths):
-            self.tableWidget.setColumnWidth(col_idx, width + 20)
-
-        # Fits contents of table widget
-        self.tableWidget.resizeColumnsToContents()
-    
-    def displayProgramTable(self):
+    def showTable(self):
         self.current_table_index = self.displayComboBox.currentIndex()
+        self.clearHeaderBox()
 
-        self.sortComboBox.clear()
-        self.sortComboBox.addItems(self.headers[1])
-        
-        self.searchBox.clear()
-        self.searchComboBox.clear()
-        self.searchComboBox.addItem("")
-        self.searchComboBox.addItems(self.headers[1])
-        
-        with open(PROGRAM_CSV, newline='', encoding='utf-8') as csvfile:
-            reader = csv.reader(csvfile)
-            self.headers[1] = next(reader)
-            data = [row for row in reader]
-            self.data[1] = data
+        self.tableWidget.setColumnCount(len(self.headers[self.current_table_index]))
+        self.tableWidget.setHorizontalHeaderLabels(self.headers[self.current_table_index])
+        self.tableWidget.setRowCount(len(self.data[self.current_table_index]))
 
-        self.tableWidget.setColumnCount(len(self.headers[1]))
-        self.tableWidget.setHorizontalHeaderLabels(self.headers[1])
-        self.tableWidget.setRowCount(len(self.data[1]))
-
-        # Store max width for each column
-        column_widths = [0] * len(self.headers[1])
-
-        # Populate table and calculate column width
-        for row_idx, row in enumerate(self.data[1]):
+        # Populate table
+        for row_idx, row in enumerate(self.data[self.current_table_index]):
             for col_idx, value in enumerate(row):
                 item = QTableWidgetItem(str(value))
                 self.tableWidget.setItem(row_idx, col_idx, item)
 
-                # Track the longest string length in pixels
-                text_width = self.tableWidget.fontMetrics().boundingRect(str(value)).width()
-                column_widths[col_idx] = max(column_widths[col_idx], text_width)
-
-        #Adjust column widths based on the longest text
-        for col_idx, width in enumerate(column_widths):
-            self.tableWidget.setColumnWidth(col_idx, width + 20) 
-
-        self.tableWidget.resizeColumnsToContents()
-
-    def displayCollegeTable(self):
-        self.current_table_index = self.displayComboBox.currentIndex()
-
-        self.sortComboBox.clear()
-        self.sortComboBox.addItems(self.headers[2])
-        
-        self.searchBox.clear()
-        self.searchComboBox.clear()
-        self.searchComboBox.addItem("")
-        self.searchComboBox.addItems(self.headers[2])
-        
-        with open(COLLEGE_CSV, newline='', encoding='utf-8') as csvfile:
-            reader = csv.reader(csvfile)
-            self.headers[2] = next(reader)
-            data = [row for row in reader]
-            self.data[2] = data
-
-        self.tableWidget.setColumnCount(len(self.headers[2]))
-        self.tableWidget.setHorizontalHeaderLabels(self.headers[2])
-        self.tableWidget.setRowCount(len(self.data[2]))
-
-        # Store max width for each column
-        column_widths = [0] * len(self.headers[2])
-
-        # Populate table and calculate column width
-        for row_idx, row in enumerate(self.data[2]):
-            for col_idx, value in enumerate(row):
-                item = QTableWidgetItem(str(value))
-                self.tableWidget.setItem(row_idx, col_idx, item)
-
-                # Track the longest string length in pixels
-                text_width = self.tableWidget.fontMetrics().boundingRect(str(value)).width()
-                column_widths[col_idx] = max(column_widths[col_idx], text_width)
-
-        #Adjust column widths based on the longest text
-        for col_idx, width in enumerate(column_widths):
-            self.tableWidget.setColumnWidth(col_idx, width + 20)
-
-        self.tableWidget.resizeColumnsToContents()
+        # Fits the columns to the length of the table
+        self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
     
     def searchEntry(self):
         searched_item = self.searchBox.text().lower()
@@ -216,8 +122,9 @@ class MainClass(QMainWindow, Ui_MainWindow):
             return
 
         header_labels = self.headers[self.current_table_index]
-        filter_col_index = header_labels.index(search_filter)  # Get column index
+        filter_col_index = header_labels.index(search_filter)
 
+        # Tracks matched entries
         match_counter = 0
 
         # Iterate through table rows and hide/show based on search match
@@ -231,11 +138,12 @@ class MainClass(QMainWindow, Ui_MainWindow):
             if match:
                 match_counter += 1
 
+        # If no matched entries, display error message
         if match_counter == 0:
             self.displayTable()
             self.searchError()
             return
-        
+    
     def searchError(self):
         searchErrorMsg = QtWidgets.QMessageBox(self)
         searchErrorMsg.setWindowTitle("No Results")
@@ -351,14 +259,14 @@ class MainClass(QMainWindow, Ui_MainWindow):
     def addProgramSuccess(self):
         addProgramMsg = QtWidgets.QMessageBox(self)
         addProgramMsg.setWindowTitle("Input Added")
-        addProgramMsg.setText("Student entry has been successfully added")
+        addProgramMsg.setText("Program entry has been successfully added")
         addProgramMsg.setIcon(QtWidgets.QMessageBox.Information)
         addProgramMsg.exec_()
 
     def addCollegeSuccess(self):
         addCollegeMsg = QtWidgets.QMessageBox(self)
         addCollegeMsg.setWindowTitle("Input Added")
-        addCollegeMsg.setText("Student entry has been successfully added")
+        addCollegeMsg.setText("Program entry has been successfully added")
         addCollegeMsg.setIcon(QtWidgets.QMessageBox.Information)
         addCollegeMsg.exec_()
         
@@ -419,13 +327,13 @@ class MainClass(QMainWindow, Ui_MainWindow):
             updateProgramCode = self.tableWidget.item(selected_row, 5).text()
 
             studentEditor = StudentDialog(updateIDNumber, updateFirstName, updateLastName, updateYearLevel, updateGender, updateProgramCode)
-            if studentEditor.exec_():  # If the user clicks OK
+            if studentEditor.exec_():
                 updated_values = studentEditor.updatedStudentData()
 
                 if updated_values != [updateIDNumber, updateFirstName, updateLastName, updateYearLevel, updateGender, updateProgramCode]:
                     data[selected_row] = updated_values
                 
-                    self.updateStudentCSV(data)
+                    self.saveStudentCSV(data)
                     self.displayTable()
                     self.updateStudentSuccess()
 
@@ -444,18 +352,16 @@ class MainClass(QMainWindow, Ui_MainWindow):
             if programEditor.exec_():
                 updated_values = programEditor.updatedProgramData()
                 
-                if updated_values is not None and updated_values != [updateProgramCode, updateProgramName, updateCollegeCode]:
+                if updated_values != [updateProgramCode, updateProgramName, updateCollegeCode]:
                     data[selected_row] = updated_values
 
-                for row in self.data[0]:
-                    if row[5] == updateProgramCode:
-                        row[5] = updated_values[0]
+                    for row in self.data[0]:
+                        if row[5] == updateProgramCode:
+                            row[5] = updated_values[0]
 
-                self.updateProgramCSV(data)
-                self.updateStudentCSV(self.data[0])
-                self.displayTable()
-
-                if updated_values != [updateProgramCode, updateProgramName, updateCollegeCode]:
+                    self.saveProgramCSV(data)
+                    self.saveStudentCSV(self.data[0])
+                    self.displayTable()
                     self.updateProgramSuccess()
 
     def updateCollegeEntry(self):
@@ -472,20 +378,17 @@ class MainClass(QMainWindow, Ui_MainWindow):
             if collegeEditor.exec_():
                 updated_values = collegeEditor.updatedCollegeData()
                 
-                if updated_values is not None and updated_values != [updateCollegeCode, updateCollegeName]:
+                if updated_values != [updateCollegeCode, updateCollegeName]:
                     data[selected_row] = updated_values
 
-                for row in self.data[1]:
-                    if row[2] == updateCollegeCode:
-                        row[2] = updated_values[0]
+                    for row in self.data[1]:
+                        if row[2] == updateCollegeCode:
+                            row[2] = updated_values[0]
 
-                self.updateCollegeCSV(data)
-                self.updateProgramCSV(self.data[1])
-                self.displayTable()
-
-                if updated_values != [updateCollegeCode, updateCollegeName]:
-                    self.updateProgramSuccess()
-
+                    self.saveCollegeCSV(data)
+                    self.saveProgramCSV(self.data[1])
+                    self.displayTable()
+                    self.updateCollegeSuccess()
     
     def sortLayout(self):
         column_index = self.sortComboBox.currentIndex()
@@ -506,6 +409,7 @@ class MainClass(QMainWindow, Ui_MainWindow):
         gender = self.genderComboBox.currentText()
         programCode = self.programCodeBox.currentText()
 
+        # Check whether the displayed table is the correct one.
         if self.current_table_index != 0:
             QMessageBox.warning(self, "Table Mismatch", "Must be on student table to add.")
             return
@@ -522,6 +426,7 @@ class MainClass(QMainWindow, Ui_MainWindow):
             QMessageBox.warning(self, "Input Error", "The ID Number you're trying to enter already exists.")
             return
         
+        # Validates first name and last name, should not contain any numbers
         if not all(char.isalpha() or char.isspace() for char in firstName and lastName):
             QMessageBox.warning(self, "Input Error", "Input a valid name.")
             return
@@ -530,7 +435,7 @@ class MainClass(QMainWindow, Ui_MainWindow):
             studentData = [idNumber, firstName, lastName, yearLevel, gender, programCode]
             self.data[0].append(studentData)
 
-            self.updateStudentCSV(self.data[0])
+            self.saveStudentCSV(self.data[0])
             self.clearStudentInput()
             self.displayTable()
             self.addStudentSuccess()
@@ -546,15 +451,15 @@ class MainClass(QMainWindow, Ui_MainWindow):
     def readStudentCSV(self):
         with open(STUDENT_CSV, newline='', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile)
-            self.headers[0] = next(reader)  # Keep headers
+            self.headers[0] = next(reader)
             data = [row for row in reader]
             self.data[0] = data
     
-    def updateStudentCSV(self, data):
-            with open(STUDENT_CSV, 'w', newline='', encoding='utf-8') as csvfile:
-                writer = csv.writer(csvfile)
-                writer.writerow(self.headers[0])  # Write headers back
-                writer.writerows(data)
+    def saveStudentCSV(self, data):
+        with open(STUDENT_CSV, 'w', newline='', encoding='utf-8') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(self.headers[0])
+            writer.writerows(data)
     
     def deleteStudentEntry(self):
         selected_row = self.tableWidget.currentRow()
@@ -566,7 +471,7 @@ class MainClass(QMainWindow, Ui_MainWindow):
         if 0 <= selected_row < len(data):
             del data[selected_row]
 
-        self.updateStudentCSV(data)
+        self.saveStudentCSV(data)
         self.displayTable()
         self.deleteStudentSuccess()
 
@@ -583,6 +488,7 @@ class MainClass(QMainWindow, Ui_MainWindow):
         programName = self.programNameEdit.text().strip().title()
         collegeCode = self.collegeCodeBox.currentText()
 
+        # Check whether the displayed table is the correct one.
         if self.current_table_index != 1:
             QMessageBox.warning(self, "Table Mismatch", "Must be on program table to add.")
             return
@@ -599,21 +505,21 @@ class MainClass(QMainWindow, Ui_MainWindow):
             existingProgramCode = row[0].strip().upper()
             existingProgramName = row[1].strip().replace(" ", "").upper()
 
-            # Check if the college code already exists
+            # Check if the program code already exists
             if existingProgramCode == programCode:
                 QMessageBox.warning(self, "Input Error", "The program code you are trying to add already exists.")
                 return
 
-            # Check if the college name already exists
+            # Check if the program name already exists
             if existingProgramName == programName.replace(" ", "").upper():
                 QMessageBox.warning(self, "Input Error", "The program name you are trying to enter already exists.")
                 return 
 
         if programCode and programName and collegeCode:
-            program_data = [programCode, programName, collegeCode]
-            self.data[1].append(program_data)
+            programData = [programCode, programName, collegeCode]
+            self.data[1].append(programData)
 
-            self.updateProgramCSV(self.data[1])
+            self.saveProgramCSV(self.data[1])
             self.clearProgramInput()
             self.displayTable()
             self.addProgramSuccess()
@@ -626,15 +532,15 @@ class MainClass(QMainWindow, Ui_MainWindow):
     def readProgramCSV(self):
         with open(PROGRAM_CSV, newline='', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile)
-            self.headers[1] = next(reader)  # Keep headers
+            self.headers[1] = next(reader)
             data = [row for row in reader]
             self.data[1] = data
 
-    def updateProgramCSV(self, data):
+    def saveProgramCSV(self, data):
         with open(PROGRAM_CSV, 'w', newline='', encoding='utf-8') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(self.headers[1])
-            writer.writerows(data)  # Writes each row separately
+            writer.writerows(data)
     
     def deleteProgramEntry(self):
         selected_row = self.tableWidget.currentRow()
@@ -650,8 +556,8 @@ class MainClass(QMainWindow, Ui_MainWindow):
             if row[5] == program_code_to_replace:
                 row[5] = "UNENROLLED"
             
-        self.updateProgramCSV(data)
-        self.updateStudentCSV(self.data[0])
+        self.saveProgramCSV(data)
+        self.saveStudentCSV(self.data[0])
         self.displayTable()
         self.deleteProgramSuccess()
 
@@ -674,7 +580,7 @@ class MainClass(QMainWindow, Ui_MainWindow):
         collegeCode = self.collegeCodeEdit2.text().strip().replace(" ","").upper()
         collegeName = self.collegeNameEdit.text().strip().title()
 
-        #CHECK WHETHER THE DISPLAYED TABLE IS THE CORRECT ONE
+        # Check whether the displayed table is the correct one.
         if self.current_table_index != 2:
             QMessageBox.warning(self, "Incorrect displayed table", "Must be on college table to add.")
             return
@@ -702,10 +608,10 @@ class MainClass(QMainWindow, Ui_MainWindow):
                 return 
 
         if collegeCode and collegeName:
-            college_data = [collegeCode, collegeName]
-            self.data[2].append(college_data)
+            collegeData = [collegeCode, collegeName]
+            self.data[2].append(collegeData)
 
-            self.updateCollegeCSV(self.data[2])
+            self.saveCollegeCSV(self.data[2])
             self.clearCollegeInput()
             self.displayTable()
             self.addCollegeSuccess()
@@ -717,15 +623,15 @@ class MainClass(QMainWindow, Ui_MainWindow):
     def readCollegeCSV(self):
         with open(COLLEGE_CSV, newline='', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile)
-            self.headers[2] = next(reader)  # Keep headers
+            self.headers[2] = next(reader)
             data = [row for row in reader]
             self.data[2] = data
 
-    def updateCollegeCSV(self, data):
+    def saveCollegeCSV(self, data):
         with open(COLLEGE_CSV, 'w', newline='', encoding='utf-8') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(self.headers[2])
-            writer.writerows(data)  # Writes each row separately
+            writer.writerows(data)
     
     def deleteCollegeEntry(self):
         selected_row = self.tableWidget.currentRow()
@@ -734,10 +640,10 @@ class MainClass(QMainWindow, Ui_MainWindow):
 
         college_code = self.tableWidget.item(selected_row, 0).text()
         
-        # Remove from college_data
-        for i in range(len(self.data[2]) - 1, -1, -1):  
-            if self.data[2][i][0] == college_code:
-                del self.data[2][i]
+        # Remove from college data
+        for row_idx in reversed(range(len(self.data[2]))):  
+            if self.data[2][row_idx][0] == college_code:
+                del self.data[2][row_idx]
 
         # Find programs linked to the deleted college
         program_codes_to_remove = set()
@@ -745,19 +651,19 @@ class MainClass(QMainWindow, Ui_MainWindow):
             if row[2] == college_code:
                 program_codes_to_remove.add(row[0])
 
-        # Remove related programs
-        for i in range(len(self.data[1]) - 1, -1, -1):  
-            if self.data[1][i][0] in program_codes_to_remove:
-                del self.data[1][i]
+        # Delete related programs
+        for row_idx in reversed(range(len(self.data[1]))):  
+            if self.data[1][row_idx][0] in program_codes_to_remove:
+                del self.data[1][row_idx]
 
-        # Update related students to have 'UNENROLLED' as program code
+        # Update related students to be 'UNENROLLED'
         for row in self.data[0]:
             if row[5] in program_codes_to_remove:
                 row[5] = "UNENROLLED"
         
-        self.updateCollegeCSV(self.data[2])
-        self.updateProgramCSV(self.data[1])
-        self.updateStudentCSV(self.data[0])
+        self.saveCollegeCSV(self.data[2])
+        self.saveProgramCSV(self.data[1])
+        self.saveStudentCSV(self.data[0])
         self.displayTable()
         self.deleteCollegeSuccess()
 
@@ -783,20 +689,16 @@ class StudentDialog(QDialog, Ui_StudentDialog):
         self.programChoices()
 
         self.updateIDNumber.setText(idNumber)
-        self.updateIDNumber.setReadOnly(True)
-
         self.updateFirstName.setText(firstName)
-        self.updateFirstName.setReadOnly(True)
-
         self.updateLastName.setText(lastName)
-        self.updateLastName.setReadOnly(True)
-
         self.updateYearLevelComboBox.setCurrentText(yearLevel)
-
-        self.updateGenderComboBox.setCurrentText(gender)
-        self.updateGenderComboBox.setEditable(False)
-
+        self.updateGender.setText(gender)
         self.updateProgramCodeComboBox.setCurrentText(programCode)
+        
+        self.updateFirstName.setReadOnly(True)
+        self.updateLastName.setReadOnly(True)
+        self.updateIDNumber.setReadOnly(True)
+        self.updateGender.setReadOnly(True)
 
         self.pushButton.clicked.connect(self.accept)       
         self.pushButton_2.clicked.connect(self.reject)
@@ -811,16 +713,12 @@ class StudentDialog(QDialog, Ui_StudentDialog):
             self.updateProgramCodeComboBox.addItems(program_codes)
 
     def updatedStudentData(self):
-        if not self.updateProgramCodeComboBox:
-            QMessageBox.warning(self, "Input Error", "All required fields must be field up.")
-            return
-        
         return [
             self.updateIDNumber.text(),
             self.updateFirstName.text(),
             self.updateLastName.text(),
             self.updateYearLevelComboBox.currentText(),
-            self.updateGenderComboBox.currentText(),
+            self.updateGender.text(),
             self.updateProgramCodeComboBox.currentText(),
         ]
 #----------------------------------------------------------------------- EDIT PROGRAM ----------------------------------------------------------------------
@@ -843,6 +741,7 @@ class ProgramDialog(QDialog, Ui_ProgramDialog):
         self.programNameEdit.setText(programName)
         self.collegeCodeBox.setCurrentText(collegeCode)
 
+        # Validates if input is not empty
         self.confirmButton.clicked.connect(self.validateProgramData)       
         self.cancelButton.clicked.connect(self.reject)
 
@@ -879,6 +778,7 @@ class ProgramDialog(QDialog, Ui_ProgramDialog):
             QMessageBox.warning(self, "Input Error", "All fields must be filled up.")
             return None
         
+        # Validates if program code and name contains digits
         if not all(char.isalpha() or char.isspace() for char in newProgramCode and newProgramName):
             QMessageBox.warning(self, "Input Error", "Please input a valid program name.")
             return None
@@ -939,6 +839,7 @@ class CollegeDialog(QDialog, Ui_CollegeDialog):
         newCollegeCode = self.collegeCodeEdit.text().strip().replace(" ","").upper()
         newCollegeName = self.collegeNameEdit.text().strip().title()
 
+        # If no changes were made, return the original values
         if (newCollegeCode == self.originalCollegeCode and newCollegeName == self.originalCollegeName):
             return [self.originalCollegeCode, self.originalCollegeName]
         
@@ -946,6 +847,7 @@ class CollegeDialog(QDialog, Ui_CollegeDialog):
             QMessageBox.warning(self, "Input Error", "All fields must be filled up.")
             return None
         
+        # Validates if the input contains numbers
         if not all(char.isalpha() or char.isspace() for char in newCollegeCode and newCollegeName):
             QMessageBox.warning(self, "Input Error", "Please input a valid college name.")
             return None
@@ -959,18 +861,15 @@ class CollegeDialog(QDialog, Ui_CollegeDialog):
 
             # Check if the college code already exists
             if existingCollegeCode == newCollegeCode:
-                QMessageBox.warning(self, "Input Error", "The program code you are trying to add already exists.")
+                QMessageBox.warning(self, "Input Error", "The college code you are trying to add already exists.")
                 return None
 
             # Check if the college name already exists
             if existingCollegeName == newCollegeName.replace(" ", "").upper():
-                QMessageBox.warning(self, "Input Error", "The program name you are trying to enter already exists.")
+                QMessageBox.warning(self, "Input Error", "The college name you are trying to enter already exists.")
                 return None
 
-        return [
-            newCollegeCode,
-            newCollegeName
-        ]
+        return [newCollegeCode, newCollegeName]
     
     def validateCollegeData(self):
         updated_data = self.updatedCollegeData()

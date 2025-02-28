@@ -94,24 +94,6 @@
      </property>
     </item>
    </widget>
-   <widget class="QComboBox" name="updateGenderComboBox">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>240</y>
-      <width>180</width>
-      <height>40</height>
-     </rect>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::RightToLeft</enum>
-    </property>
-    <item>
-     <property name="text">
-      <string>M</string>
-     </property>
-    </item>
-   </widget>
    <widget class="QComboBox" name="updateProgramCodeComboBox">
     <property name="geometry">
      <rect>
@@ -227,6 +209,19 @@
     </property>
     <property name="text">
      <string>Cancel</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="updateGender">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>240</y>
+      <width>180</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
     </property>
    </widget>
   </widget>
