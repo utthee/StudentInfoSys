@@ -47,16 +47,16 @@
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>900</x>
+       <x>880</x>
        <y>10</y>
-       <width>101</width>
+       <width>111</width>
        <height>41</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>Lucida Console</family>
-       <pointsize>10</pointsize>
+       <pointsize>12</pointsize>
        <weight>50</weight>
        <bold>false</bold>
       </font>
@@ -98,7 +98,7 @@
       <rect>
        <x>320</x>
        <y>10</y>
-       <width>140</width>
+       <width>135</width>
        <height>40</height>
       </rect>
      </property>
@@ -143,7 +143,7 @@
    <widget class="QFrame" name="frame_2">
     <property name="geometry">
      <rect>
-      <x>1340</x>
+      <x>1350</x>
       <y>190</y>
       <width>521</width>
       <height>361</height>
@@ -482,8 +482,8 @@
     <property name="geometry">
      <rect>
       <x>1340</x>
-      <y>560</y>
-      <width>521</width>
+      <y>580</y>
+      <width>531</width>
       <height>211</height>
      </rect>
     </property>
@@ -521,9 +521,9 @@
     <widget class="QLabel" name="label_9">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>10</y>
-       <width>211</width>
+       <width>201</width>
        <height>41</height>
       </rect>
      </property>
@@ -561,7 +561,7 @@
     <widget class="QLabel" name="label_10">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>60</y>
        <width>221</width>
        <height>41</height>
@@ -585,7 +585,7 @@
     <widget class="QLabel" name="label_11">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>110</y>
        <width>221</width>
        <height>41</height>
@@ -657,8 +657,8 @@
     <property name="geometry">
      <rect>
       <x>1340</x>
-      <y>780</y>
-      <width>521</width>
+      <y>820</y>
+      <width>531</width>
       <height>161</height>
      </rect>
     </property>
@@ -680,9 +680,9 @@
     <widget class="QLabel" name="label_12">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>10</y>
-       <width>221</width>
+       <width>211</width>
        <height>41</height>
       </rect>
      </property>
@@ -760,9 +760,9 @@
     <widget class="QLabel" name="label_13">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>60</y>
-       <width>221</width>
+       <width>211</width>
        <height>41</height>
       </rect>
      </property>
@@ -871,33 +871,33 @@
     </property>
     <item>
      <property name="text">
-      <string>Student</string>
+      <string>STUDENT</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>Program</string>
+      <string>PROGRAM</string>
      </property>
     </item>
     <item>
      <property name="text">
-      <string>College</string>
+      <string>COLLEGE</string>
      </property>
     </item>
    </widget>
    <widget class="QLabel" name="label_14">
     <property name="geometry">
      <rect>
-      <x>970</x>
+      <x>920</x>
       <y>140</y>
-      <width>71</width>
+      <width>121</width>
       <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Lucida Console</family>
-      <pointsize>10</pointsize>
+      <pointsize>12</pointsize>
       <weight>50</weight>
       <bold>false</bold>
      </font>
@@ -906,7 +906,7 @@
      <string notr="true"/>
     </property>
     <property name="text">
-     <string>SHOW:</string>
+     <string>DISPLAY:</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_15">
@@ -938,14 +938,14 @@
      <rect>
       <x>50</x>
       <y>140</y>
-      <width>131</width>
+      <width>151</width>
       <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>Lucida Console</family>
-      <pointsize>10</pointsize>
+      <pointsize>12</pointsize>
       <weight>50</weight>
       <bold>false</bold>
      </font>
@@ -960,10 +960,10 @@
    <widget class="QComboBox" name="searchComboBox">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>220</x>
       <y>140</y>
-      <width>160</width>
-      <height>41</height>
+      <width>270</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="font">
@@ -988,7 +988,7 @@
     <property name="font">
      <font>
       <family>Lucida Console</family>
-      <pointsize>10</pointsize>
+      <pointsize>12</pointsize>
       <weight>50</weight>
       <bold>false</bold>
      </font>
