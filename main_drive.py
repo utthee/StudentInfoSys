@@ -582,7 +582,7 @@ class MainClass(QMainWindow, Ui_MainWindow):
 
         # Check whether the displayed table is the correct one.
         if self.current_table_index != 2:
-            QMessageBox.warning(self, "Incorrect displayed table", "Must be on college table to add.")
+            QMessageBox.warning(self, "Table Mismatch", "Must be on college table to add.")
             return
 
         if not collegeCode or not collegeName:
