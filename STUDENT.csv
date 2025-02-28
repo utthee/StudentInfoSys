@@ -1,0 +1,101 @@
+ID#,FIRST NAME,LAST NAME,YEAR LEVEL,GENDER,PROGRAM CODE
+2023-1927,Aubrey,Graham,2,M,BAPOLSCI
+2024-3645,Kendrick,Lamar,1,M,BSCHEM
+2021-7380,Thomas,Shelby,4,M,BSEDBIO
+2022-2159,Arthur,Shelby,3,M,BSCE
+2023-0952,Ada,Lovelace,2,F,BSCA
+2024-2479,Cilian,Murphy,1,M,BSIT
+2021-1386,Walter,White,4,M,BSN
+2022-3489,Jesse,Pinkman,3,M,BSCA
+2023-0457,Dexter,Morgan,2,M,BSCHE
+2024-1268,Clark,Kent,1,M,BAELS
+2021-0357,Alaina,Wayne,4,F,BSHM
+2022-1457,Alan,Scott,3,M,BSENE
+2023-0146,Hal,Jordan,2,M,BSENE
+2024-4598,Jermaine,Cole,1,M,BSA
+2021-0938,Dwayne,Carter,4,M,BSSTAT
+2022-0007,Curtis,Jackson,3,M,BAELS
+2022-0378,Kanye,West,3,M,BSBA
+2023-1237,Solano Imani,Rowe,2,F,BSCE
+2022-0101,Kai,Cenat,3,M,BAELS
+2023-0739,Ray,Quan Lee,2,M,BAPOLSCI
+2021-1634,Tony,Soprano,4,M,BSCHEM
+2022-2045,Skylar,Grey,3,F,BSMATH
+2023-1398,Lara,Croft,2,F,BSMETE
+2024-1229,Regina,Willis,1,F,BSPSYCH
+2021-1750,Blank,Karmasutra,4,M,BSPSYCH
+2022-2281,Phillip,Strange,3,M,BSEDPHYS
+2023-0496,South,Park,2,M,BAPOLSCI
+2024-0132,Doctor,Strange,1,M,BAELS
+2021-2127,Rennala,Fulmoon,4,F,BSCHE
+2022-1374,Grace,Sight,3,F,BSN
+2023-2040,Jean,Gunnhildr,2,F,BSEDBIO
+2024-1025,Elon,Musk,1,M,BSPSYCH
+2021-0859,Alan,Turing,4,M,BSEDBIO
+2022-1436,Noam,Chomsky,3,M,BSENE
+2023-2148,Hu,Tao,2,F,BSCE
+2024-1073,Marshall,Mathers,1,M,BSPHY
+2021-0347,Nicki,Minaj,4,F,BSEDCHEM
+2022-1629,O'Shea,Jackson,3,F,BSMATH
+2023-1793,Michael,Jackson,2,M,BSEDMATH
+2024-0256,Luka,Doncic,1,M,BSCHE
+2021-2084,Anthony,Davis,4,M,BSCS
+2022-0165,Britney,Griner,3,F,BSBIO
+2023-1957,Kevin,Durant,2,M,BSEDMATH
+2024-0864,Adin,Ross,1,M,BSCS
+2021-1125,Amala Ratna,Dlamini,4,F,BSMETE
+2022-0428,Robert Bryson,Hall,3,M,BSCA
+2023-1543,Shawn,Carter,2,M,BSA
+2024-0237,Vince,Carter,1,M,BSIS
+2021-0751,Shaquille,O'Neal,4,M,BSCHEM
+2022-1682,Calvin,Broadus,3,M,BSCE
+2023-0493,Jonathan,Kirk,2,M,BSCE
+2024-0912,Kirshnik Khari,Ball,1,M,BSN
+2021-1237,Kendall,Jenner,4,F,BSCA
+2022-2056,Sue,Bird,3,F,BSEDPHYS
+2023-1278,Larry,Bird,2,M,BSN
+2024-1146,Michael,Jordan,1,M,BSMETE
+2021-0573,Cynthia,Cooper,4,F,BSHM
+2022-0824,Kareem,Abdul-Jabbar,3,M,BAELS
+2023-1649,Anthony,Edwards,2,M,BSENE
+2024-2275,Giannis,Antetokounmpo,1,M,BSIT
+2021-2324,Gianni,Rivera,4,M,BSIS
+2022-0918,Larry,Jackson,3,M,BSPHY
+2023-2147,Tamika,Catchings,2,F,BSN
+2024-1863,Bryson,Edwards,1,M,BSBIO
+2021-1602,Shelly,Cooper,4,F,BSCHEM
+2022-1749,Britney,Spears,3,F,BSMATH
+2023-1426,Maria,Clara,2,F,BSBIO
+2024-0915,William,Roberts,1,M,BSN
+2021-1295,Juan,Dela Cruz,4,M,BSEDBIO
+2022-0512,Jarad,Higgins,3,M,BSCHEM
+2023-0634,Terrence,Thornton,2,M,BSEDCHEM
+2024-2284,Pharrel,Williams,1,M,BAPOLSCI
+2021-0194,Tramar Lacel,Dillard,4,M,BSCHEM
+2022-1367,Megan Ruthy,Pete,3,F,BSSTAT
+2023-0908,Melissa Viviane,Jefferson,2,F,BSPSYCH
+2024-1842,Carlotta,Montelli,1,F,BSIT
+2021-2071,San,Hua,4,F,BSIS
+2022-1025,Jason,Borne,3,M,BSMATH
+2023-2124,Akira,Kurosawa,2,M,BSBIO
+2024-1758,Ranni,Witch,1,F,BAPOLSCI
+2021-0843,Monkey,Luffy,4,M,BSENE
+2022-2145,Ichigo,Kurosaki,3,M,BSA
+2023-1487,Gideon,Ofnir,2,M,BSMETE
+2024-0231,Godrick,Grafted,1,M,BSPHY
+2021-1623,Hoarah,Loux,4,M,BSMETE
+2022-0768,Nepheli,Loux,3,F,BAELS
+2023-1419,Rya,Scout,2,F,BSA
+2024-0492,Black Blade,Kindred,1,M,BSBIO
+2021-1292,Starscourge,Radahn,4,M,BSCA
+2022-2142,Marika,Eternal,3,F,BSCE
+2023-3328,Stephen,Curry,2,M,BSN
+2021-2504,Lebron,James,4,M,BSIS
+2023-3876,Chris,Bush,2,M,BSIT
+2021-3107,Anna,Parker,4,F,BAPOLSCI
+2021-3412,James,Smith,4,M,BSENE
+2022-2708,Taylor,Reeves,3,F,BSCE
+2022-2928,John,Jones,3,M,BSEDPHYS
+2024-2850,Mai,Kuriyama,1,F,BSEDPHYS
+2021-2661,David,Booker,4,M,BSIT
+2022-3458,John,Lennon,3,M,BAELS

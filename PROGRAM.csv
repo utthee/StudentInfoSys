@@ -1,0 +1,26 @@
+PROGRAM CODE,PROGRAM NAME,COLLEGE CODE
+BSCA,Bachelor Of Science In Computer Application,CCS
+BSIT,Bachelor Of Science In Information Technology,CCS
+BSIS,Bachelor Of Science In Information Systems,CCS
+BSCS,Bachelor Of Science In Computer Science,CCS
+BSPHY,Bachelor Science In Physics,CSM
+BSBIO,Bachelor Of Science In Biology,CSM
+BSCHEM,Bachelor Of Science In Chemistry,CSM
+BSMATH,Bachelor Of Science In Mathematics,CSM
+BSSTAT,Bachelor Of Science In Statistics,CSM
+BSCHE,Bachelor Of Science In Chemical Engineering,COE
+BSENE,Bachelor Of Science In Environmental Engineering,COE
+BSCE,Bachelor Of Science In Civil Engineering,COE
+BSMETE,Bachelor Of Science In Metallurgical Engineering,COE
+BSA,Bachelor Of Science In Accountancy,CEBA
+BSBA,Bachelor Of Science In Business Administration,CEBA
+BSHM,Bachelor Of Science In Hospitality Management,CEBA
+BAFIL,Bachelor Of Arts In Filipino,CASS
+BAELS,Bachelor Of Science In English Language Studies,CASS
+BSPSYCH,Bachelor Of Science In Psychology,CASS
+BAPOLSCI,Bachelor Of Arts In Political Science,CASS
+BSEDBIO,Bachelor Of Secondary Education In Biology,CED
+BSEDCHEM,Bachelor Of Secondary Education In Chemistry,CED
+BSEDPHYS,Bachelor Of Secondary Education In Physics,CED
+BSEDMATH,Bachelor Of Secondary Education In Mathematics,CED
+BSN,Bachelor Of Science In Nursing,CHS
